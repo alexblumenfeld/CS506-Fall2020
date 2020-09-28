@@ -14,8 +14,15 @@ def read_csv(csv_file_path):
             # Deal with the newline characters in the CSV
             if '\n' in sub_list[j]:
                 sub_list[j] = sub_list[j][:-1]
-            # Deal with numbers that are currently expressed as strings
+            # Remove leading or trailing spaces
+            sub_list[j] = sub_list[j].strip()
+            print(sub_list)
+            # Deal with numbers that are currently expressed as strings (first integers, then floats)
             if sub_list[j].isnumeric():
-                sub_list[j] = int(sub_list[j])
+                    sub_list[j] = int(sub_list[j])
+            elif "." in sub_list[j]:
+                sub_list[j] = float(sub_list[j])
         lines[i] = sub_list
     return lines
+
+print(read_csv("/Users/Alex/Desktop/test.csv"))
